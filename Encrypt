@@ -1,0 +1,66 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+
+int main(int argc, string argv[])
+{
+    if (argc == 2)
+    {
+    int EncrypRule = atoi(argv[1]);
+    printf("Please type the word/sentence you wish to encrypt or decrypt\n");
+    string Input = GetString();
+    int Length = strlen(Input);
+    int result;
+    char choice;
+    printf("Please indicate whether you want to Encrypt, by typing E, or Decrypt, by typing D\n");
+    choice = GetChar();
+    switch(choice)
+     {
+        case 'E':
+        for (int i = 0; i < Length; i++)
+             {
+         char letter = Input[i];
+         if (isupper(letter))
+             {
+            result = (((letter - 65) + EncrypRule) % 26 + 65);
+             }
+         else if (islower(letter))
+            {
+            result = (((letter - 97) + EncrypRule) % 26 + 97);
+            }
+          else
+          {
+          result = letter;
+          }
+          printf("%c", result);
+            }
+        break;
+
+        case 'D':
+        for (int i = 0; i < Length; i++)
+             {
+         char letter = Input[i];
+         if (isupper(letter))
+             {
+            result = (((letter - 65) - (EncrypRule)) % 26 + 65);
+             }
+         else if (islower(letter))
+            {
+            result = (((letter - 97) - EncrypRule) % 26 + 97);
+            }
+          else
+          {
+          result = letter;
+          }
+          printf("%c", result);
+        }
+        break;
+        
+        default :
+         printf("ur an idiot\n" );
+     }
+    }
+}
